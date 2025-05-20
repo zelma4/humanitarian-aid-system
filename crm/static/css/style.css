@@ -1,0 +1,156 @@
+/* =============== */
+/*     ЗМІННІ      */
+/* =============== */
+:root {
+    --color-primary: #343a40; /* темний відтінок (navbar, наприклад) */
+    --color-bg: #f8f9fa;      /* світлий фон */
+    --color-text: #212529;    /* темний текст */
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+    --transition-speed: 0.3s;
+  }
+  
+  /* ======================== */
+  /*   БАЗОВІ СТИЛІ ТІЛА     */
+  /* ======================== */
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Open Sans", sans-serif;
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ======================== */
+  /*   НАВІГАЦІЯ (navbar)     */
+  /* ======================== */
+  .navbar {
+    background-color: var(--color-primary) !important;
+    transition: background-color var(--transition-speed) ease;
+  }
+  .navbar-brand,
+  .nav-link {
+    color: #fff !important;
+  }
+  
+  /* ======================== */
+  /*   КНОПКИ       */
+  /* ======================== */
+  .btn-custom-save {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: #fff;
+    transition: background-color var(--transition-speed), 
+                transform var(--transition-speed);
+  }
+  .btn-custom-save:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  .btn-custom-back {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+    color: #fff;
+    transition: background-color var(--transition-speed), 
+                transform var(--transition-speed);
+  }
+  .btn-custom-back:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  /* При бажанні можна використати і btn-primary / btn-danger із Bootstrap */
+  
+  /* ======================== */
+  /*   АНІМАЦІЇ       */
+  /* ======================== */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  /* Для прикладу slide-in */
+  @keyframes slideIn {
+    from { transform: translateX(-15px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+  }
+  .slide-in {
+    animation: slideIn 0.8s ease-in-out;
+  }
+  
+  /* Глобальний стиль для елементів списку, якщо треба:
+  .list-group-item {
+    transition: transform 0.2s;
+  }
+  .list-group-item:hover {
+    transform: scale(1.02);
+  }
+  */
+  
+  /* ======================== */
+  /*  ТЕМНА ТЕМА (dark-mode)  */
+  /* ======================== */
+  .dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+    background: linear-gradient(45deg, #2c3e50, #34495e); /* Ефект градієнта */
+  }
+  .dark-mode .navbar {
+    background: linear-gradient(45deg, #2c3e50, #34495e) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+  .dark-mode .navbar-brand, 
+  .dark-mode .nav-link {
+    color: #ffffff !important;
+  }
+  .dark-mode .theme-toggle-btn {
+    background-color: #333;
+  }
+  .dark-mode .theme-toggle-circle {
+    transform: translateX(24px);
+    background-color: #fff;
+  }
+  .dark-mode .btn-custom-save {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: #ffffff;
+  }
+  .dark-mode .btn-custom-back {
+    background-color: var(--color-danger);
+    border-color: var(--color-danger);
+    color: #ffffff;
+  }
+  
+  /* ======================== */
+  /*  ПЕРЕМИКАЧ ТЕМИ (кнопка) */
+  /* ======================== */
+  .theme-toggle-btn {
+    cursor: pointer;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    background-color: #fff;
+    position: relative;
+    transition: background-color var(--transition-speed);
+    margin-left: 10px;
+  }
+  .theme-toggle-circle {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    top: 1px;
+    left: 1px;
+    border-radius: 50%;
+    transition: transform var(--transition-speed), 
+                background-color var(--transition-speed);
+  }
+  

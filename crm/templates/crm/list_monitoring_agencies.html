@@ -1,0 +1,34 @@
+{% extends 'crm/base.html' %}
+{% block title %}List of Monitoring Agencies{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">List of Monitoring Agencies</h1>
+    <form method="get" class="form-inline my-4 fade-in">
+        {{ form.query.label_tag }}
+        {{ form.query }}
+        <button type="submit" class="btn btn-primary ml-2">Search</button>
+    </form>
+    <table class="table table-striped fade-in">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for monitoring_agency in monitoring_agencies %}
+                <tr>
+                    <td>{{ monitoring_agency.monitoryagencyId }}</td>
+                    <td>{{ monitoring_agency.name }}</td>
+                    <td>{{ monitoring_agency.address }}</td>
+                    <td>{{ monitoring_agency.phone_number }}</td>
+                    <td>{{ monitoring_agency.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}" class="btn btn-custom-back mt-3 fade-in">Back to Home</a>
+{% endblock %}

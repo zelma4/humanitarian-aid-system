@@ -1,0 +1,12 @@
+{% extends 'crm/base.html' %}
+{% block title %}Delete Recipient{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">Delete Recipient</h1>
+    <p class="fade-in">Are you sure you want to delete {{ recipient.organizationName }}?</p>
+    <form method="post" class="mt-4 fade-in">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'list_recipients' %}" class="btn btn-custom-back ml-2">Cancel</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+<!-- file: templates/crm/login.html -->
+{% extends "crm/base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">Login</h1>
+    <form method="POST" class="mt-4 fade-in">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-custom-save">Login</button>
+    </form>
+{% endblock %}

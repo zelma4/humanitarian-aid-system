@@ -1,0 +1,34 @@
+{% extends 'crm/base.html' %}
+{% block title %}List of Suppliers{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">List of Suppliers</h1>
+    <form method="get" class="form-inline my-4 fade-in">
+        {{ form.query.label_tag }}
+        {{ form.query }}
+        <button type="submit" class="btn btn-primary ml-2">Search</button>
+    </form>
+    <table class="table table-striped fade-in">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.supplierId }}</td>
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ supplier.address }}</td>
+                    <td>{{ supplier.phone_number }}</td>
+                    <td>{{ supplier.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}" class="btn btn-custom-back mt-3 fade-in">Back to Home</a>
+{% endblock %}

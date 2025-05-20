@@ -1,0 +1,10 @@
+{% extends "crm/base.html" %}
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">Logout</h1>
+    <p class="fade-in mt-3">
+        You have been logged out.
+        <a href="{% url 'home' %}">Go to Home</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Humanitarian Aid System{% endblock %}</title>
+
+    <!-- Bootstrap CSS + Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Підключаємо власний файл зі стилями -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Humanitarian Aid System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Ліве меню -->
+            <ul class="navbar-nav mr-auto">
+                <!-- Dropdown: Add -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="[thinking]
+
+addDropdown" role="button" 
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-plus"></i> Add
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="addDropdown">
+                        <a class="dropdown-item" href="{% url 'add_recipient' %}">
+                            <i class="fas fa-user-plus"></i> Add Recipient
+                        </a>
+                        <a class="dropdown-item" href="{% url 'add_help_request' %}">
+                            <i class="fas fa-hands-helping"></i> Add Help Request
+                        </a>
+                        <a class="dropdown-item" href="{% url 'add_coordinator' %}">
+                            <i class="fas fa-user-tie"></i> Add Coordinator
+                        </a>
+                        <a class="dropdown-item" href="{% url 'add_supplier' %}">
+                            <i class="fas fa-truck"></i> Add Supplier
+                        </a>
+                        <a class="dropdown-item" href="{% url 'add_monitoring_agency' %}">
+                            <i class="fas fa-eye"></i> Add Monitoring Agency
+                        </a>
+                    </div>
+                </li>
+                <!-- Dropdown: Lists -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="listDropdown" role="button" 
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-list"></i> Lists
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="listDropdown">
+                        <a class="dropdown-item" href="{% url 'list_recipients' %}">
+                            <i class="fas fa-users"></i> List Recipients
+                        </a>
+                        <a class="dropdown-item" href="{% url 'list_help_requests' %}">
+                            <i class="fas fa-hands-helping"></i> List Help Requests
+                        </a>
+                        <a class="dropdown-item" href="{% url 'list_coordinators' %}">
+                            <i class="fas fa-user-tie"></i> List Coordinators
+                        </a>
+                        <a class="dropdown-item" href="{% url 'list_suppliers' %}">
+                            <i class="fas fa-truck"></i> List Suppliers
+                        </a>
+                        <a class="dropdown-item" href="{% url 'list_monitoring_agencies' %}">
+                            <i class="fas fa-eye"></i> List Monitoring Agencies
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Праве меню (автентифікація + перемикач теми) -->
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <button class="theme-toggle-btn" id="theme-toggle">
+                        <span class="theme-toggle-circle"></span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основний контейнер -->
+    <div class="container mt-4">
+        {% if messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+
+        <!-- Контент підсторінок -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JS + Popper + jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script 
+     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script 
+     src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Перемикання теми -->
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>

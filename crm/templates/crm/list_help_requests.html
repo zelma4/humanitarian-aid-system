@@ -1,0 +1,50 @@
+{% extends "crm/base.html" %}
+{% block title %}List of Help Requests{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in"><i class="fas fa-hands-helping"></i> List of Help Requests</h1>
+    <table class="table table-striped fade-in mt-4">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Details</th>
+                <th>Status</th>
+                <th>Coordinator Approved</th>
+                <th>Supplier Approved</th>
+                <th>Manager Approved</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for help_request in help_requests %}
+                <tr>
+                    <td>{{ help_request.requestId }}</td>
+                    <td>{{ help_request.requestDetails }}</td>
+                    <td>{{ help_request.status }}</td>
+                    <td>{{ help_request.coordinator_approved }}</td>
+                    <td>{{ help_request.supplier_approved }}</td>
+                    <td>{{ help_request.manager_approved }}</td>
+                    <td>
+                        {% if not help_request.rejected %}
+                            {% if not help_request.coordinator_approved or not help_request.supplier_approved or not help_request.manager_approved %}
+                                <a href="{% url 'approve_help_request' help_request.requestId %}" 
+                                   class="btn btn-success btn-sm">
+                                   <i class="fas fa-check"></i> Approve
+                                </a>
+                                <a href="{% url 'reject_help_request' help_request.requestId %}" 
+                                   class="btn btn-danger btn-sm ml-1">
+                                   <i class="fas fa-times"></i> Reject
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            <span class="text-danger">Rejected</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}" class="btn btn-custom-back mt-3 fade-in">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+{% endblock %}

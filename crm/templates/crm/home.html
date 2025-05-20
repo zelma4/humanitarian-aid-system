@@ -1,0 +1,23 @@
+{% extends 'crm/base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">Welcome to the Humanitarian Aid System</h1>
+    <div class="list-group fade-in slide-in mt-4">
+        <a href="{% url 'add_recipient' %}" class="list-group-item list-group-item-action">
+            Add Recipient
+        </a>
+        <a href="{% url 'add_help_request' %}" class="list-group-item list-group-item-action">
+            Add Help Request
+        </a>
+        <a href="{% url 'add_coordinator' %}" class="list-group-item list-group-item-action">
+            Add Coordinator
+        </a>
+        <a href="{% url 'add_supplier' %}" class="list-group-item list-group-item-action">
+            Add Supplier
+        </a>
+        <a href="{% url 'add_monitoring_agency' %}" class="list-group-item list-group-item-action">
+            Add Monitoring Agency
+        </a>
+    </div>
+{% endblock %}

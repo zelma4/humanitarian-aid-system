@@ -1,0 +1,12 @@
+{% extends 'crm/base.html' %}
+{% block title %}Add Monitoring Agency{% endblock %}
+
+{% block content %}
+    <h1 class="fade-in slide-in">Add Monitoring Agency</h1>
+    <form method="post" class="mt-4 fade-in">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-custom-save">Save</button>
+    </form>
+    <a href="{% url 'home' %}" class="btn btn-custom-back mt-3 fade-in">Back to Home</a>
+{% endblock %}
